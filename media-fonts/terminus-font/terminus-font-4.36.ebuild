@@ -48,7 +48,7 @@ src_prepare() {
 	use ru-dv    && epatch "${S}"/alt/dv1.diff
 	use ru-g     && epatch "${S}"/alt/ge2.diff
 	use quote    && epatch "${S}"/alt/gq2.diff
-	use unicode-only && sed '/^pcf:/s/.*/pcf: $(PCF_U_10646)/' -i "${S}/Makefile"
+	use unicode-only && sed 's/$(PCF)/$(PCF_U_10646)/' -i "${S}/Makefile"
 }
 
 src_configure() {
