@@ -19,7 +19,7 @@ IUSE="xinerama xft"
 DEPEND="x11-libs/libX11
 	xinerama? ( x11-libs/libXinerama )
 	xft? ( x11-libs/libXft 
-	       media-libs/freetype:2)"
+	       media-libs/freetype:2 )"
 RDEPEND="${DEPEND}
 	!app-misc/lsx
 	!net-dialup/lrzsz"
