@@ -1,8 +1,8 @@
-diff -rup dmenu-4.4/config.mk dmenu-4.4-xft/config.mk
---- dmenu-4.4/config.mk	2011-07-20 02:01:28.000000000 +0530
-+++ dmenu-4.4-xft/config.mk	2011-08-03 21:46:43.767914223 +0530
+diff -urN dmenu-4.4.1-xft/config.mk dmenu-4.4.1/config.mk
+--- dmenu-4.4.1-xft/config.mk	2011-11-14 23:26:31.699258639 +0400
++++ dmenu-4.4.1/config.mk	2011-11-14 23:41:03.946354056 +0400
 @@ -2,19 +2,24 @@
- VERSION = 4.4
+ VERSION = 4.4.1
  
  # paths
 -PREFIX = /usr/local
@@ -29,10 +29,9 @@ diff -rup dmenu-4.4/config.mk dmenu-4.4-xft/config.mk
  
  # flags
  CPPFLAGS = -D_BSD_SOURCE -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}
-Only in dmenu-4.4-xft: dmenu
-diff -rup dmenu-4.4/dmenu.c dmenu-4.4-xft/dmenu.c
---- dmenu-4.4/dmenu.c	2011-07-20 02:01:28.000000000 +0530
-+++ dmenu-4.4-xft/dmenu.c	2011-08-03 21:38:49.000000000 +0530
+diff -urN dmenu-4.4.1-xft/dmenu.c dmenu-4.4.1/dmenu.c
+--- dmenu-4.4.1-xft/dmenu.c	2011-11-14 23:26:31.699258639 +0400
++++ dmenu-4.4.1/dmenu.c	2011-11-14 23:26:49.293038687 +0400
 @@ -16,6 +16,8 @@
  #define INRECT(x,y,rx,ry,rw,rh) ((x) >= (rx) && (x) < (rx)+(rw) && (y) >= (ry) && (y) < (ry)+(rh))
  #define MIN(a,b)                ((a) < (b) ? (a) : (b))
@@ -42,7 +41,7 @@ diff -rup dmenu-4.4/dmenu.c dmenu-4.4-xft/dmenu.c
  
  typedef struct Item Item;
  struct Item {
-@@ -49,8 +51,8 @@ static const char *normbgcolor = "#ccccc
+@@ -49,8 +51,8 @@
  static const char *normfgcolor = "#000000";
  static const char *selbgcolor  = "#0066ff";
  static const char *selfgcolor  = "#ffffff";
@@ -53,7 +52,7 @@ diff -rup dmenu-4.4/dmenu.c dmenu-4.4-xft/dmenu.c
  static Atom utf8;
  static Bool topbar = True;
  static DC *dc;
-@@ -102,7 +104,9 @@ main(int argc, char *argv[]) {
+@@ -102,7 +104,9 @@
  			usage();
  
  	dc = initdc();
@@ -64,7 +63,7 @@ diff -rup dmenu-4.4/dmenu.c dmenu-4.4-xft/dmenu.c
  
  	if(fast) {
  		grabkeyboard();
-@@ -165,7 +169,8 @@ drawmenu(void) {
+@@ -165,7 +169,8 @@
  	dc->x = 0;
  	dc->y = 0;
  	dc->h = bh;
@@ -74,7 +73,7 @@ diff -rup dmenu-4.4/dmenu.c dmenu-4.4-xft/dmenu.c
  
  	if(prompt) {
  		dc->w = promptw;
-@@ -175,7 +180,7 @@ drawmenu(void) {
+@@ -175,7 +180,7 @@
  	dc->w = (lines > 0 || !matches) ? mw - dc->x : inputw;
  	drawtext(dc, text, normcol);
  	if((curpos = textnw(dc, text, cursor) + dc->h/2 - 2) < dc->w)
@@ -83,7 +82,7 @@ diff -rup dmenu-4.4/dmenu.c dmenu-4.4-xft/dmenu.c
  
  	if(lines > 0) {
  		dc->w = mw - dc->x;
-@@ -479,11 +484,12 @@ setup(void) {
+@@ -479,11 +484,12 @@
  	XineramaScreenInfo *info;
  #endif
  
@@ -97,10 +96,9 @@ diff -rup dmenu-4.4/dmenu.c dmenu-4.4-xft/dmenu.c
  	utf8 = XInternAtom(dc->dpy, "UTF8_STRING", False);
  
  	/* menu geometry */
-Only in dmenu-4.4-xft: dmenu.o
-diff -rup dmenu-4.4/draw.c dmenu-4.4-xft/draw.c
---- dmenu-4.4/draw.c	2011-07-20 02:01:28.000000000 +0530
-+++ dmenu-4.4-xft/draw.c	2011-08-03 21:38:49.000000000 +0530
+diff -urN dmenu-4.4.1-xft/draw.c dmenu-4.4.1/draw.c
+--- dmenu-4.4.1-xft/draw.c	2011-11-14 23:26:31.699258639 +0400
++++ dmenu-4.4.1/draw.c	2011-11-14 23:34:56.259950763 +0400
 @@ -5,13 +5,11 @@
  #include <stdlib.h>
  #include <string.h>
@@ -116,7 +114,7 @@ diff -rup dmenu-4.4/draw.c dmenu-4.4-xft/draw.c
  
  void
  drawrect(DC *dc, int x, int y, unsigned int w, unsigned int h, Bool fill, unsigned long color) {
-@@ -23,7 +21,7 @@ drawrect(DC *dc, int x, int y, unsigned
+@@ -23,7 +21,7 @@
  }
  
  void
@@ -125,7 +123,7 @@ diff -rup dmenu-4.4/draw.c dmenu-4.4-xft/draw.c
  	char buf[BUFSIZ];
  	size_t mn, n = strlen(text);
  
-@@ -35,19 +33,25 @@ drawtext(DC *dc, const char *text, unsig
+@@ -35,19 +33,25 @@
  	if(mn < n)
  		for(n = MAX(mn-3, 0); n < mn; buf[n++] = '.');
  
@@ -157,7 +155,7 @@ diff -rup dmenu-4.4/draw.c dmenu-4.4-xft/draw.c
  		XSetFont(dc->dpy, dc->gc, dc->font.xfont->fid);
  		XDrawString(dc->dpy, dc->canvas, dc->gc, x, y, text, n);
  	}
-@@ -68,19 +72,53 @@ eprintf(const char *fmt, ...) {
+@@ -68,19 +72,53 @@
  	exit(EXIT_FAILURE);
  }
  
@@ -194,8 +192,8 @@ diff -rup dmenu-4.4/draw.c dmenu-4.4-xft/draw.c
 +	if(dc)
 +        free(dc);
 +
-+}
-+
+ }
+ 
 +ColorSet *
 +initcolor(DC *dc, const char * foreground, const char * background) {
 +    ColorSet * col = (ColorSet *)malloc(sizeof(ColorSet));
@@ -208,13 +206,13 @@ diff -rup dmenu-4.4/draw.c dmenu-4.4-xft/draw.c
 +        DefaultColormap(dc->dpy, DefaultScreen(dc->dpy)), foreground, &col->FG_xft))
 +            eprintf("error, cannot allocate xft font color '%s'\n", foreground);
 +    return col;
- }
- 
++}
++
 +
  unsigned long
  getcolor(DC *dc, const char *colstr) {
  	Colormap cmap = DefaultColormap(dc->dpy, DefaultScreen(dc->dpy));
-@@ -101,6 +139,9 @@ initdc(void) {
+@@ -101,6 +139,9 @@
  		eprintf("cannot malloc %u bytes:", sizeof *dc);
  	if(!(dc->dpy = XOpenDisplay(NULL)))
  		eprintf("cannot open display\n");
@@ -224,7 +222,7 @@ diff -rup dmenu-4.4/draw.c dmenu-4.4-xft/draw.c
  
  	dc->gc = XCreateGC(dc->dpy, DefaultRootWindow(dc->dpy), 0, NULL);
  	XSetLineAttributes(dc->dpy, dc->gc, 1, LineSolid, CapButt, JoinMiter);
-@@ -109,27 +150,21 @@ initdc(void) {
+@@ -109,23 +150,13 @@
  
  void
  initfont(DC *dc, const char *fontstr) {
@@ -241,35 +239,34 @@ diff -rup dmenu-4.4/draw.c dmenu-4.4-xft/draw.c
 -loadfont(DC *dc, const char *fontstr) {
 -	char *def, **missing, **names;
 +	char *def, **missing=NULL, **names;
- 	int i, n = 1;
+ 	int i, n;
  	XFontStruct **xfonts;
  
--	if(!*fontstr)
--		return False;
- 	if((dc->font.set = XCreateFontSet(dc->dpy, fontstr, &missing, &n, &def)))
+ 	if(!*fontstr)
+ 		return False;
++
+ 	if((dc->font.set = XCreateFontSet(dc->dpy, fontstr, &missing, &n, &def))) {
  		n = XFontsOfFontSet(dc->font.set, &xfonts, &names);
- 	else if((dc->font.xfont = XLoadQueryFont(dc->dpy, fontstr)))
- 		xfonts = &dc->font.xfont;
-+    else if((dc->font.xft_font = XftFontOpenName(dc->dpy,
-+            DefaultScreen(dc->dpy), fontstr))) {
-+        dc->font.ascent = dc->font.xft_font->ascent;
-+        dc->font.descent = dc->font.xft_font->descent;
-+     dc->font.height = dc->font.ascent + dc->font.descent;
-+       return;
-+	} 
- 	else
- 		n = 0;
- 
-@@ -140,7 +175,7 @@ loadfont(DC *dc, const char *fontstr) {
+ 		for(i = 0; i < n; i++) {
+@@ -139,9 +170,16 @@
+ 		dc->font.descent = dc->font.xfont->descent;
+ 		dc->font.width   = dc->font.xfont->max_bounds.width;
  	}
++ 	else if((dc->font.xft_font = XftFontOpenName(dc->dpy, DefaultScreen(dc->dpy), fontstr))) {
++            dc->font.ascent = dc->font.xft_font->ascent;
++            dc->font.descent = dc->font.xft_font->descent;
++            dc->font.height = dc->font.ascent + dc->font.descent;
++            return;
++        } 
++
  	if(missing)
  		XFreeStringList(missing);
--	return (dc->font.set || dc->font.xfont);
-+    dc->font.height = dc->font.ascent + dc->font.descent;
+-	return dc->font.set || dc->font.xfont;
++        dc->font.height = dc->font.ascent + dc->font.descent;
  }
  
  void
-@@ -150,6 +185,7 @@ mapdc(DC *dc, Window win, unsigned int w
+@@ -151,6 +189,7 @@
  
  void
  resizedc(DC *dc, unsigned int w, unsigned int h) {
@@ -277,7 +274,7 @@ diff -rup dmenu-4.4/draw.c dmenu-4.4-xft/draw.c
  	if(dc->canvas)
  		XFreePixmap(dc->dpy, dc->canvas);
  
-@@ -157,17 +193,30 @@ resizedc(DC *dc, unsigned int w, unsigne
+@@ -158,17 +197,30 @@
  	dc->h = h;
  	dc->canvas = XCreatePixmap(dc->dpy, DefaultRootWindow(dc->dpy), w, h,
  	                           DefaultDepth(dc->dpy, DefaultScreen(dc->dpy)));
@@ -311,9 +308,9 @@ diff -rup dmenu-4.4/draw.c dmenu-4.4-xft/draw.c
  }
  
  int
-diff -rup dmenu-4.4/draw.h dmenu-4.4-xft/draw.h
---- dmenu-4.4/draw.h	2011-07-20 02:01:28.000000000 +0530
-+++ dmenu-4.4-xft/draw.h	2011-08-03 21:38:49.000000000 +0530
+diff -urN dmenu-4.4.1-xft/draw.h dmenu-4.4.1/draw.h
+--- dmenu-4.4.1-xft/draw.h	2011-11-14 23:26:31.699258639 +0400
++++ dmenu-4.4.1/draw.h	2011-11-14 23:26:49.298038624 +0400
 @@ -1,9 +1,9 @@
  /* See LICENSE file for copyright and license details. */
  
@@ -327,7 +324,7 @@ diff -rup dmenu-4.4/draw.h dmenu-4.4-xft/draw.h
  
  typedef struct {
  	int x, y, w, h;
-@@ -11,6 +11,7 @@ typedef struct {
+@@ -11,6 +11,7 @@
  	Display *dpy;
  	GC gc;
  	Pixmap canvas;
@@ -335,7 +332,7 @@ diff -rup dmenu-4.4/draw.h dmenu-4.4-xft/draw.h
  	struct {
  		int ascent;
  		int descent;
-@@ -18,12 +19,21 @@ typedef struct {
+@@ -18,12 +19,21 @@
  		int width;
  		XFontSet set;
  		XFontStruct *xfont;
@@ -359,13 +356,10 @@ diff -rup dmenu-4.4/draw.h dmenu-4.4-xft/draw.h
  void eprintf(const char *fmt, ...);
  void freedc(DC *dc);
  unsigned long getcolor(DC *dc, const char *colstr);
-@@ -33,3 +43,6 @@ void mapdc(DC *dc, Window win, unsigned
+@@ -33,3 +43,6 @@
  void resizedc(DC *dc, unsigned int w, unsigned int h);
  int textnw(DC *dc, const char *text, size_t len);
  int textw(DC *dc, const char *text);
 +ColorSet *initcolor(DC *dc, const char *foreground, const char *background);
 +
 +
-Only in dmenu-4.4-xft: draw.o
-Only in dmenu-4.4-xft: lsx
-Only in dmenu-4.4-xft: lsx.o
