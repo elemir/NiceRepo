@@ -5,7 +5,7 @@
 
 EAPI="4"
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
 DESCRIPTION="a generic, highly customizable, and efficient menu for the X Window System"
 HOMEPAGE="http://www.suckless.org/programs/dmenu.html"
@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}
 	!net-dialup/lrzsz"
 
 src_prepare() {
-	use xft && epatch ${FILESDIR}/${P}-xft.patch || die
+	use xft && epatch ${FILESDIR}/${P}-xft.patch
 
 	sed -i \
 		-e "s/CFLAGS   = -ansi -pedantic -Wall -Os/CFLAGS  += -ansi -pedantic -Wall/" \
