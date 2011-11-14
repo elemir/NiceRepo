@@ -1,0 +1,12 @@
+diff -urN xmobar-0.13/src/Xmobar.hs xmobar-0.13.new/src/Xmobar.hs
+--- xmobar-0.13/src/Xmobar.hs	2011-03-28 03:16:24.000000000 +0400
++++ xmobar-0.13.new/src/Xmobar.hs	2011-11-14 18:04:07.096099452 +0400
+@@ -292,7 +292,7 @@
+   let (conf,d)             = (config &&& display) r
+       Rectangle _ _ wid ht = rect r
+       totSLen              = foldr (\(_,_,len) -> (+) len) 0 sl
+-      valign               = (fi ht + fi (as + ds)) `div` 2 - 1
++      valign               = (fi ht + fi (as + ds)) `div` 2 - 2
+       remWidth             = fi wid - fi totSLen
+       offset               = case a of
+                                C -> (remWidth + offs) `div` 2
