@@ -18,8 +18,8 @@ KEYWORDS=""
 IUSE=""
 
 RDEPEND="|| (
-		( >=www-client/firefox-3.6 <www-client/firefox-11 )
-		( >=www-client/firefox-bin-3.6 <www-client/firefox-bin-11 ) )"
+		( >=www-client/firefox-3.6 )
+		( >=www-client/firefox-bin-3.6 ) )"
 DEPEND="${DEPEND}
 	app-arch/zip"
 
