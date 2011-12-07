@@ -15,7 +15,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="xft unicode mail alsa -vanilla"
 # wifi USE flag disabled due to compilation error with current stable wireless-tools.
-# mpd is disabled as it requires mtl-2 (not in tree)
 
 DEPEND=">=dev-lang/ghc-6.8.1
 		>=dev-haskell/cabal-1.6
@@ -28,10 +27,10 @@ DEPEND=">=dev-lang/ghc-6.8.1
 		xft?  ( dev-haskell/utf8-string
 				dev-haskell/x11-xft )
 		mail? ( dev-haskell/hinotify )
-		alsa? ( >=dev-haskell/alsa-mixer-0.1 )"
-#		mpd? ( >=dev-haskell/libmpd-0.5 )
+		alsa? ( >=dev-haskell/alsa-mixer-0.1 )
+		mpd? ( >=dev-haskell/libmpd-0.5 )"
 # 		wifi? ( net-wireless/wireless-tools )
-#RDEPEND="mpd? ( media-sound/mpd )"
+RDEPEND="mpd? ( media-sound/mpd )"
 RDEPEND=""
 
 src_prepare() {
@@ -43,8 +42,8 @@ src_configure() {
 		$(cabal_flag xft with_xft) \
 		$(cabal_flag unicode with_utf8) \
 		$(cabal_flag mail with_inotify) \
-		$(cabal_flag alsa with_alsa)
-#		$(cabal_flag mpd with_mpd) \
+		$(cabal_flag alsa with_alsa) \
+		$(cabal_flag mpd with_mpd)
 #		$(cabal_flag wifi with_iwlib) \
 }
 
