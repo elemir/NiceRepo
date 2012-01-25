@@ -6,23 +6,23 @@ EAPI=4
 
 inherit vim-plugin
 
-MY_PN="NrrwRgn"
-DESCRIPTION="vim plugin: emulates Emacs Narrowing feature"
-HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=3075"
-SRC_URI="https://github.com/chrisbra/${MY_PN}/tarball/master -> ${P}.tar.gz"
+MY_PN="VimOrganizer"
+DESCRIPTION="vim plugin: emulates Emacs org-mode feature"
+HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=3342"
+SRC_URI="https://github.com/hsitz/${MY_PN}/tarball/master -> ${P}.tar.gz"
 LICENSE="vim"
 KEYWORDS=""
 IUSE=""
 
-VIM_PLUGIN_HELPFILES="NarrowRegion.txt"
+VIM_PLUGIN_HELPFILES="vimorg.txt"
 
 src_unpack() {
 	unpack ${A}
 	mv *-${MY_PN}-* "${S}"
-	rm "${S}"/Makefile
 }
 
 src_prepare() {
 	# remove unneeded files
-	rm post.pl todo.txt .gitignore README || die
+	rm INSTALL.txt VimOrganizerCheatsheet.org _vimrc intro.txt  || die
+	rm -r contrib || die
 }
