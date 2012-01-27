@@ -21,8 +21,8 @@ IUSE=""
 src_prepare() {
 	vim_src_prepare
 
-	epatch "${FILESDIR}"/${PN}-7.3-foldhighlight.patch
 	epatch "${FILESDIR}"/${PN}-7.1.285-darwin-x11link.patch
+	epatch "${FILESDIR}"/${PN}-7.3.409-foldhighlight.patch
 	if [[ ${CHOST} == *-interix* ]]; then
 		epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch
 		epatch "${FILESDIR}"/${PN}-7.1.319-interix-cflags.patch
